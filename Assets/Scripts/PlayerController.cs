@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 12f;
     Vector3 velocity;
     CharacterController characterController;
 
+    [Header("Player Speed")]
+    [SerializeField] float speed = 12f;
+    [SerializeField] float lowSpeedMultiplier = 0.25f;
+    [SerializeField] float highSpeedMultiplier = 1.65f;
+    float baseSpeed;
+
+    [Header("Ground Check")]
     public Transform groundCheck;
     public LayerMask groundMask;
     RaycastHit hit;
@@ -14,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        baseSpeed = speed;
     }
 
   
@@ -39,13 +46,13 @@ public class PlayerController : MonoBehaviour
             switch (terrainType)
             {
                 case "Low":
-                    speed = 3;
+                    speed = baseSpeed * lowSpeedMultiplier;
                     break;
                 case "High":
-                    speed = 20;
+                    speed = baseSpeed * highSpeedMultiplier;
                     break;
                 default:
-                    speed = 12;
+                    speed = baseSpeed;
                     break;
             }
         }
