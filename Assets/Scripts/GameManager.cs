@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
     bool endGame = false;
     bool win = false;
 
+    public int points = 0;
+
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
+
     [Header("Debug")]
     public TextMeshProUGUI debugCounterText;
     public GameObject debugCounter;
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         PauseCheck();
+        DebugPickUps(); // Borrar luego
     }
 
     private void PauseCheck()
@@ -56,7 +64,6 @@ public class GameManager : MonoBehaviour
     void Stopper()
     {
         timeToEnd--;
-        Debug.Log($"Time: {timeToEnd} s");
 
         if (timeToEnd <= 0)
         {
@@ -103,11 +110,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddPoints(int point)
+    {
+        points += point;
+    }
+
+    public void AddTime(int addTime)
+    {
+        timeToEnd += addTime;
+    }
+
+    public void FreezTime(int freez)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freez, 1);
+    }
+
     void DebugUpdateTimerUI()
     {
         int minutes = timeToEnd / 60;
         int seconds = timeToEnd % 60;
 
         debugCounterText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    void DebugPickUps()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("Actual Time: " + timeToEnd);
+            Debug.Log("Points: " + points);
+            Debug.Log($"Red Key:{redKey}, Green Key:{greenKey}, Gold Key:{goldKey}");
+        }
     }
 }
