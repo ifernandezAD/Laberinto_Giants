@@ -126,6 +126,23 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("Stopper", freez, 1);
     }
 
+
+    public void AddKey(KeyColor color)
+    {
+        if (color == KeyColor.Gold)
+        {
+            goldKey++;
+        }
+        else if (color == KeyColor.Green)
+        {
+            greenKey++;
+        }
+        else if (color == KeyColor.Red)
+        {
+            redKey++;
+        }
+    }
+
     void DebugUpdateTimerUI()
     {
         int minutes = timeToEnd / 60;
