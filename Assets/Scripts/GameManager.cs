@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region PickUps
+
     public void AddPoints(int point)
     {
         points += point;
@@ -143,6 +145,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Debug
+
     void DebugUpdateTimerUI()
     {
         int minutes = timeToEnd / 60;
@@ -160,4 +166,6 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Red Key:{redKey}, Green Key:{greenKey}, Gold Key:{goldKey}");
         }
     }
+
+    #endregion
 }
