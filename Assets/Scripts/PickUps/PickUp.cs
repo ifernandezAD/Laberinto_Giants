@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    public Vector3 rotationAxis = Vector3.forward;
+
     public virtual void Picked()
     {
         Debug.Log("Picked Up");
@@ -10,6 +12,6 @@ public class PickUp : MonoBehaviour
 
     public void Rotation()
     {
-        transform.Rotate(new Vector3(0,0,1f));
+        transform.Rotate(rotationAxis);
     }
 }
