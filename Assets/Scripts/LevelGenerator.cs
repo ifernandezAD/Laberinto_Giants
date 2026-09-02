@@ -8,14 +8,6 @@ public class LevelGenerator : MonoBehaviour
     public Material material01;
     public Material material02;
 
-    private void Start()
-    {
-        Debug.Log("START DEL LEVEL GENERATOR");
-
-        GenerateLabirynth();
-
-        Debug.Log("GENERATE LABIRYNTH TERMINADO");
-    }
     public void GenerateLabirynth()
     {
         for (int x = 0; x < map.width; x++)
