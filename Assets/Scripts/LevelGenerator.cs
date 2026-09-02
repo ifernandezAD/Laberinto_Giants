@@ -7,6 +7,15 @@ public class LevelGenerator : MonoBehaviour
     public float offset = 5f;
     public Material material01;
     public Material material02;
+
+    private void Start()
+    {
+        Debug.Log("START DEL LEVEL GENERATOR");
+
+        GenerateLabirynth();
+
+        Debug.Log("GENERATE LABIRYNTH TERMINADO");
+    }
     public void GenerateLabirynth()
     {
         for (int x = 0; x < map.width; x++)
@@ -21,16 +30,29 @@ public class LevelGenerator : MonoBehaviour
     void GenerateTile(int x, int z)
     {
         Color pixelColor = map.GetPixel(x, z);
-        bool pyklo = false;
+
+        Debug.Log("Pixel: " + x + ", " + z + " Color: " + pixelColor);
+
         foreach (ColorToPrefab colorMapping in colorMappings)
         {
+            Debug.Log("Comparando " + pixelColor + " con " + colorMapping.color);
+
             if (colorMapping.color.Equals(pixelColor))
             {
+                Debug.Log("¡MATCH!");
+
                 Vector3 position = new Vector3(x, 0, z) * offset;
-                Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+
+                Instantiate(
+                    colorMapping.prefab,
+                    position,
+                    Quaternion.identity,
+                    transform
+                );
             }
         }
     }
+
     public void ColorTheChildren()
     {
         foreach (Transform child in transform)
