@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     public int greenKey = 0;
     public int goldKey = 0;
 
+    AudioSource audioSource;
+    public AudioClip resumeClip;
+    public AudioClip pauseClip;
+    public AudioClip winClip;
+    public AudioClip loseClip;
 
     [Header("Debug")]
     public TextMeshProUGUI debugCounterText;
@@ -37,6 +42,7 @@ public class GameManager : MonoBehaviour
             timeToEnd = 100;
         }
 
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("Stopper", 2, 1);
     }
 
@@ -81,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        PlayClip(pauseClip);
         Debug.Log("Game paused");
         Time.timeScale = 0;
         gamePaused = true;
@@ -108,6 +115,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("You Lose!!Reload?");
         }
+    }
+
+    public void PlayClip(AudioClip playClip)
+    {
+        audioSource.clip = playClip;
+        audioSource.Play();
     }
 
     #region PickUps
