@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
     public AudioClip loseClip;
 
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI goldKeyText;
-    public TextMeshProUGUI redKeyText;
-    public TextMeshProUGUI greenKeyText;
+    public Image goldKeyImage;
+    public Image redKeyImage;
+    public Image greenKeyImage;
     public TextMeshProUGUI crystalText;
     public Image snowFlake;
     public GameObject infoPanel;
@@ -162,17 +162,17 @@ public class GameManager : MonoBehaviour
         if (color == KeyColor.Gold)
         {
             goldKey++;
-            goldKeyText.text = goldKey.ToString();
+            goldKeyImage.enabled = true;
         }
         else if (color == KeyColor.Green)
         {
             greenKey++;
-            greenKeyText.text = greenKey.ToString();
+            greenKeyImage.enabled = true;
         }
         else if (color == KeyColor.Red)
         {
             redKey++;
-            redKeyText.text = redKey.ToString();
+            redKeyImage.enabled = true;
         }
     }
 
